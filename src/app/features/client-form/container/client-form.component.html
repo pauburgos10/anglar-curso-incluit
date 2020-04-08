@@ -1,0 +1,131 @@
+<form [formGroup]="clientForm" class="container-client">
+  <h1 class="row ">Nuevo Cliente</h1>
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="name">Nombre: </label>
+    </div>
+    <div class="col-xs-6">
+      <div class="controls">
+        <input type="text" id="name" placeholder="Nombre" class="form-control" formControlName="name">
+      </div>
+      <span class="text-danger" *ngIf="(clientForm.get('name').touched || submitted) && clientForm.get('name').errors?.required">
+        Nombre es requerido
+      </span>
+      <span class="text-danger" *ngIf="clientForm.get('name')?.maxlength || clientForm.get('name').errors?.minlength">
+        Nombre debe tener entre 3 y 20 caracteres
+      </span>
+    </div>    
+  </div>
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="lastName">Apellido: </label>
+    </div>
+    <div class="col-xs-6">
+      <div class="controls">
+        <input type="text" id="lastName" placeholder="Calle" class="form-control" formControlName="lastName">
+      </div>
+      <span class="text-danger" *ngIf="(clientForm.get('lastName').touched || submitted) && clientForm.get('lastName').errors?.required">
+        Apellido es requerido
+      </span>
+      <span class="text-danger" *ngIf="clientForm.get('lastName')?.maxlength || clientForm.get('lastName').errors?.minlength">
+        Apellido debe tener entre 3 y 20 caracteres
+      </span>
+    </div>
+  </div>
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="phone">Telefono: </label>
+    </div>
+    <div class="col-xs-6">
+      <div class="controls">
+        <input type="text" id="phone" placeholder="Telefono" class="form-control" formControlName="phone">
+      </div>
+      <span class="text-danger" *ngIf="(clientForm.get('phone').touched || submitted) && clientForm.get('phone').errors?.required">
+        Phone es requerido
+      </span>
+    </div>
+  </div>
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="email">Email: </label>
+    </div>
+    <div class="col-xs-6">
+      <div class="controls">
+        <input type="text" id="email" placeholder="Email" class="form-control" formControlName="email">
+      </div>
+      <span class="text-danger" *ngIf="(clientForm.get('email').touched || submitted) && clientForm.get('email').errors?.required">
+        Email es requerido
+      </span>
+    </div>
+  </div>
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="address">Direccion: </label>
+    </div>
+    <div class="col-xs-6">
+      <div class="controls">
+        <input type="text" id="address" placeholder="Direccion" class="form-control" formControlName="address">
+      </div>
+      <span class="text-danger" *ngIf="(clientForm.get('address').touched || submitted) && clientForm.get('address').errors?.required">
+        Dirección es requerido
+      </span>
+      <span class="text-danger" *ngIf="clientForm.get('address')?.maxlength || clientForm.get('address').errors?.minlength">
+        Dirección debe tener entre 3 y 30 caracteres
+      </span>
+    </div>
+  </div>
+
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="province">Provincia: </label>
+    </div>
+    <div class="col-xs-6">
+      <select class="form-control" id="province" formControlName="province">
+        <option value="" disabled selected hidden>Selecciona tu Provincia</option>
+        <option *ngFor="let item of provinces" [ngValue]="item">{{item.nombre}}</option>
+      </select>
+      <span class="text-danger" *ngIf="(clientForm.get('province').touched || submitted) && clientForm.get('province').errors?.required">
+        Province is required
+      </span>
+    </div>
+  </div>
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="city">Localidad: </label>
+    </div>
+    <div class="col-xs-6">
+      <select class="form-control" id="city" formControlName="city">
+        <option value="" disabled selected hidden>Selecciona tu Localidad</option>
+        <option *ngFor="let item of cities" [value]="item.nombre">{{item.nombre}}</option>
+      </select>
+      <span class="text-danger" *ngIf="clientForm.get('city').touched && clientForm.get('city').errors?.required">
+        Localidad es requerido
+      </span>   
+    </div>
+  </div>
+
+  <div class="row control-container">
+    <div class="col-xs-4">
+      <label for="zipCode">Codigo Postal: </label>
+    </div>
+    <div class="col-xs-6">
+      <div class="controls">
+        <input type="number" id="zipCode" placeholder="CP" class="form-control" formControlName="zipCode">
+      </div>
+      <span class="text-danger" *ngIf="clientForm.get('zipCode').touched && clientForm.get('zipCode').errors?.required">
+        Codigo Postal es requerido
+      </span>   
+      <span class="text-danger" *ngIf="clientForm.get('zipCode')?.maxlength || clientForm.get('zipCode').errors?.minlength">
+        Codigo Postal debe tener entre 3 y 5 caracteres
+      </span>   
+    </div>
+  </div> 
+  <div class="row control-container">
+    <div class="col-xs-6">
+      <div class="control-container__button">
+        <!-- paso 7 -->
+        <button [disabled]="!clientForm.valid" (click)="saveClient()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</form>

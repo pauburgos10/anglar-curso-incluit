@@ -1,0 +1,11 @@
+<div class="container mt-5">
+  <h1 class="display-5">Contact List</h1>
+  <div class="container">
+      <div class="mt-2">
+          <app-client-card *ngFor="let client of clients" [client]="client"></app-client-card>
+      </div>
+      <div *ngIf="clients.length === 0" class="alert alert-info mt-4">
+          No clients to show yet.
+      </div>
+  </div>
+</div>
